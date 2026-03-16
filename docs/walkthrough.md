@@ -66,7 +66,7 @@ graph LR
 ## Verification Results
 
 *   [x] **Pathing Verified**: All scripts and guides point to `/home/dmdba/dmdbms` and `/home/dmdba/dmdata`.
-*   [x] **Security Verified**: Password updated globally to `ClouderaVM123`.
+*   [x]*   **Dameng DM8 Initialization**: Run `dminit` with a secure password (e.g., `<YOUR_PASSWORD>`).
 *   [x] **NiFi Flow Logic**: Verified the three-pipeline approach in documentation for foolproof execution.
 *   [x] **Simulation**: Python script confirmed for compatibility with the final database schema.
 
