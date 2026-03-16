@@ -43,7 +43,7 @@ While Dameng provides a graphical installer, the following are the typical comma
 ### 3. Database Initialization (dminit)
 1.  **Initialize the Database Instance:** Initialize the database instance manually via the CLI, pointing it to your high-capacity storage partition in `/home`.
     ```bash
-    ./dminit path=/home/dmdba/dmdata SYSDBA_PWD=<YOUR_PASSWORD> SYSAUDITOR_PWD=<YOUR_PASSWORD>
+    ./dminit path=/home/dmdba/dmdata SYSDBA_PWD=<DAMENG_PASSWORD> SYSAUDITOR_PWD=<DAMENG_PASSWORD>
     ```
     *Result: Creates the control files, default tablespaces (SYSTEM, MAIN, ROLL), and log files in `/home/dmdba/dmdata/DAMENG`.*
 
@@ -67,7 +67,7 @@ Since no Graphical User Interface (GUI) is available on the VM, use the `disql` 
 Ensure your service is running, then connect using the default administrator account (`SYSDBA`).
 ```bash
 cd /home/dmdba/dmdbms/bin
-./disql SYSDBA/<YOUR_PASSWORD>@localhost:5236
+./disql SYSDBA/<DAMENG_PASSWORD>@localhost:5236
 ```
 *(Note: If configuring from an external Linux shell where `$` is interpreted, you may need to escape it as `\$`. Inside `disql` execution, it's literal.)*
 
@@ -81,7 +81,7 @@ CREATE TABLESPACE "FINANCE_DATA" DATAFILE '/home/dmdba/dmdata/DAMENG/FINANCE_01.
 **3. Create a User (Schema)**
 In Dameng, creating a user automatically creates a "Schema" of the same name.
 ```sql
-CREATE USER "FINANCE_DEMO" IDENTIFIED BY "<YOUR_PASSWORD>" DEFAULT TABLESPACE "FINANCE_DATA";
+CREATE USER "FINANCE_DEMO" IDENTIFIED BY "<DAMENG_PASSWORD>" DEFAULT TABLESPACE "FINANCE_DATA";
 ```
 
 **4. Grant Permissions**
@@ -95,7 +95,7 @@ GRANT "PUBLIC", "RESOURCE", "SOI" TO "FINANCE_DEMO";
 Disconnect from `SYSDBA` and log in as your new user to create your first table.
 ```bash
 # Exit disql first by typing 'exit'
-./disql FINANCE_DEMO/<YOUR_PASSWORD>@localhost:5236
+./disql FINANCE_DEMO/<DAMENG_PASSWORD>@localhost:5236
 ```
 
 #### **1.2 Create the Banking Ecosystem Tables**
@@ -177,7 +177,7 @@ Since Dameng DMHS is an Enterprise-only tool and may require a commercial licens
     *   **Database Connection URL**: `jdbc:dm://<YOUR_DAMENG_IP>:5236`
     *   **Database Driver Class Name**: `dm.jdbc.driver.DmDriver`
     *   **Database Driver Location(s)**: The path where you uploaded the `.jar`.
-    *   **User/Password**: `FINANCE_DEMO / <YOUR_PASSWORD>`
+    *   **User/Password**: `FINANCE_DEMO / <DAMENG_PASSWORD>`
 
 #### 2. NiFi Parameter Context Setup (The "Demo Brain")
 To handle the full ecosystem, we use parameters for each generator script:

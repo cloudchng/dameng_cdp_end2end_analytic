@@ -4,7 +4,7 @@
 This document summarizes the end-to-end implementation of the Fraud Detection pipeline.
 
 ## Implementation Details
-1.  **Dameng DM8 Initialization**: Run `dminit` with a secure password (e.g., `<YOUR_PASSWORD>`).
+1.  **Dameng DM8 Initialization**: Run `dminit` with a secure password (e.g., `<DAMENG_PASSWORD>`).
 2.  **NiFi Ingestion Pipeline**:
     *   **Pipeline 1**: Connectivity check.
     *   **Pipeline 2**: Simulator (generating banking records).
@@ -34,7 +34,7 @@ This document summarizes the end-to-end implementation of the Fraud Detection pi
 ## Verification Results
 
 *   [x] **Pathing Verified**: All scripts and guides point to `/home/dmdba/dmdbms` and `/home/dmdba/dmdata`.
-*   [x] **Security Verified**: Password redacted globally to `<YOUR_PASSWORD>`.
+*   [x] **Security Verified**: Password redacted globally to `<DAMENG_PASSWORD>`.
 *   [x] **NiFi Flow Logic**: Verified the three-pipeline approach in documentation for foolproof execution.
 *   [x] **Simulation**: Python script confirmed for compatibility with the final database schema.
 
