@@ -82,7 +82,7 @@ CREATE TABLESPACE "FINANCE_DATA" DATAFILE '/home/dmdba/dmdata/DAMENG/FINANCE_01.
 **3. Create a User (Schema)**
 In Dameng, creating a user automatically creates a "Schema" of the same name.
 ```sql
-CREATE USER "FINANCE_DEMO" IDENTIFIED BY "ClouderaVM123" DEFAULT TABLESPACE "FINANCE_DATA";
+CREATE USER "FINANCE_DEMO" IDENTIFIED BY "<YOUR_PASSWORD>" DEFAULT TABLESPACE "FINANCE_DATA";
 ```
 
 **4. Grant Permissions**
@@ -178,7 +178,7 @@ Since Dameng DMHS is an Enterprise-only tool and may require a commercial licens
     *   **Database Connection URL**: `jdbc:dm://<YOUR_DAMENG_IP>:5236`
     *   **Database Driver Class Name**: `dm.jdbc.driver.DmDriver`
     *   **Database Driver Location(s)**: The path where you uploaded the `.jar`.
-    *   **User/Password**: `FINANCE_DEMO / ClouderaVM123`
+    *   **User/Password**: `FINANCE_DEMO / <YOUR_PASSWORD>`
 
 #### 2. NiFi Parameter Context Setup (The "Demo Brain")
 To handle the full ecosystem, we use parameters for each generator script:
