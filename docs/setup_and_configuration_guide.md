@@ -43,8 +43,7 @@ While Dameng provides a graphical installer, the following are the typical comma
 ### 3. Database Initialization (dminit)
 1.  **Initialize the Database Instance:** Initialize the database instance manually via the CLI, pointing it to your high-capacity storage partition in `/home`.
     ```bash
-    cd /home/dmdba/dmdbms/bin
-    ./dminit path=/home/dmdba/dmdata SYSDBA_PWD=ClouderaVM123 SYSAUDITOR_PWD=ClouderaVM123
+    ./dminit path=/home/dmdba/dmdata SYSDBA_PWD=<YOUR_PASSWORD> SYSAUDITOR_PWD=<YOUR_PASSWORD>
     ```
     *Result: Creates the control files, default tablespaces (SYSTEM, MAIN, ROLL), and log files in `/home/dmdba/dmdata/DAMENG`.*
 
@@ -68,7 +67,7 @@ Since no Graphical User Interface (GUI) is available on the VM, use the `disql` 
 Ensure your service is running, then connect using the default administrator account (`SYSDBA`).
 ```bash
 cd /home/dmdba/dmdbms/bin
-./disql SYSDBA/ClouderaVM123@localhost:5236
+./disql SYSDBA/<YOUR_PASSWORD>@localhost:5236
 ```
 *(Note: If configuring from an external Linux shell where `$` is interpreted, you may need to escape it as `\$`. Inside `disql` execution, it's literal.)*
 
@@ -96,7 +95,7 @@ GRANT "PUBLIC", "RESOURCE", "SOI" TO "FINANCE_DEMO";
 Disconnect from `SYSDBA` and log in as your new user to create your first table.
 ```bash
 # Exit disql first by typing 'exit'
-./disql FINANCE_DEMO/ClouderaVM123@localhost:5236
+./disql FINANCE_DEMO/<YOUR_PASSWORD>@localhost:5236
 ```
 
 #### **1.2 Create the Banking Ecosystem Tables**

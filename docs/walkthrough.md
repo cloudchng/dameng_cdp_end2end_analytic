@@ -1,27 +1,22 @@
-# Project Walkthrough: Dameng & Cloudera Integration for Real-Time Fraud Detection
+# Project Walkthrough: Dameng & Cloudera Lakehouse
 
-We have successfully designed, documented, and prepared a full-stack demo environment that integrates a Dameng DM8 database with Cloudera CDP for real-time analytics.
+## Overview
+This document summarizes the end-to-end implementation of the Fraud Detection pipeline.
 
-## Accomplishments
+## Implementation Details
+1.  **Dameng DM8 Initialization**: Run `dminit` with a secure password (e.g., `<YOUR_PASSWORD>`).
+2.  **NiFi Ingestion Pipeline**:
+    *   **Pipeline 1**: Connectivity check.
+    *   **Pipeline 2**: Simulator (generating banking records).
+    *   **Pipeline 3**: Lakehouse sync (landing data into Iceberg).
 
-1.  **Dameng DM8 Professional Setup**:
-    *   Designed a headless installation and initialization process on a specific high-capacity partition (`/home/dmdba/dmdata`) to avoid storage limitations.
-    *   Automated service persistence using `systemctl enable`.
-    *   Configured a professional tablespace (`FINANCE_DATA`) and user (`FINANCE_DEMO`) with appropriate permissions.
+3.  **Visual Analytics (CDV)**:
+    *   Created 3 dynamic dashboards in Cloudera Data Visualization.
+    *   Pivoted from a map to a high-performance Bar Chart for city-level analysis.
 
-2.  **NiFi Orchestration Hub (Source Simulation & Ingestion)**:
-    *   **Simulator Hub**: A multi-generator pipeline that simulates front-end applications (Mobile, POS, KYC) writing into Dameng via JDBC.
-    *   **Ingestion Hub**: A multi-path pipeline that pulls from Dameng. Demonstrates a complex ETL flow for all datasets: structure mapping and instant landing into **Apache Iceberg** tables for "No-Refresh" analytics.
-    *   **Enterprise Security**: Implements granular **Kerberos authentication** and HDFS ACLs, ensuring a production-grade security posture.
-    *   **Diverse Transformers**: Demonstrates NiFi's variety through **QueryRecord SQL transformations**, PII governance tagging & masking, automated risk scoring, and liquidity tiering mid-flight.
-    *   **Dynamic Logic**: All scripts are stored in NiFi **Parameter Contexts**, allowing for real-time demo adjustments.
-
-3.  **Advanced Use Cases**:
-    *   **ML Credit Scoring**: Join datasets in CML for predictive risk modeling.
-    *   **GenAI Fraud Explainer**: Use the Cloudera AI bridge to provide natural language justifications for fraud flags.
-
-4.  **Phase 3: Visual Analytics (CDV)**:
-    *   **Dynamic Dashboards**: Designed and documented real-time monitoring solutions in CDV, including the **Fraud Command Center** (Geo-Map, Status Pie, KPI Counters).
+4.  **AI Governance (SDX)**:
+    *   **Atlas Lineage**: Proof of origin for banking data.
+    *   **Ranger Security**: Tag-based masking for PII columns.
     *   **Instant Visibility**: Leveraged Iceberg's "No-Refresh" capability for sub-second visual updates.
 
 5.  **Presentation Artifacts**:
@@ -29,45 +24,18 @@ We have successfully designed, documented, and prepared a full-stack demo enviro
     *   Produced a [Demo Walkthrough](demo_walkthrough_guide.md) script for the final showcase.
 
 ## Final Architecture Overview
+*   **Operational DB**: Dameng DM8 on Linux.
+*   **Ingestion Hub**: Apache NiFi on CDP.
+*   **Lakehouse Format**: Apache Iceberg.
+*   **Security & Governance**: SDX (Atlas/Ranger).
+*   **Downstream Applications**: CML (Machine Learning) and CDV (BI).
 
-```mermaid
-graph LR
-    subgraph "Dameng VM"
-        DB["Dameng DM8"]
-        SIM["Python Generator"]
-    end
-
-    subgraph "Cloudera CDP"
-        NiFi["NiFi (ExecuteProcess -> Trigger Simulator)"]
-        NiFi2["NiFi (JDBC Polling -> PutIceberg)"]
-        HDFS["HDFS (Staging)"]
-        CML["CML (PySpark Fraud Detection)"]
-        CDV["Data Viz (Live Dashboards & Map)"]
-    end
-
-    subgraph "Simulator Suite"
-        TX["TX Gen"]
-        CUST["CUST Gen"]
-        MERCH["MERCH Gen"]
-        ACC["ACC Gen"]
-    end
-
-    TX & CUST & MERCH & ACC -- "JDBC Insert" --> DB["Dameng DM8"]
-
-    subgraph "NiFi Ingestion Hub"
-        NiFi["QueryDatabaseTable (x4)"] -- "QueryRecord (SQL)" --> Trans["Cast, Map & Mask"]
-    Iceberg["Lakehouse (Iceberg: transactions, customers, etc.)"] -- "Auto-Refresh" --> Impala["Impala Analytics"]
-    end
-
-    DB -- "JDBC Fetch" --> NiFi
-    Iceberg -- "Analytics" --> CML["CML / CDV / GenAI"]
-```
-
+---
 ## Verification Results
 
 *   [x] **Pathing Verified**: All scripts and guides point to `/home/dmdba/dmdbms` and `/home/dmdba/dmdata`.
-*   [x]*   **Dameng DM8 Initialization**: Run `dminit` with a secure password (e.g., `<YOUR_PASSWORD>`).
+*   [x] **Security Verified**: Password redacted globally to `<YOUR_PASSWORD>`.
 *   [x] **NiFi Flow Logic**: Verified the three-pipeline approach in documentation for foolproof execution.
 *   [x] **Simulation**: Python script confirmed for compatibility with the final database schema.
 
-**Project Status: Ready for Demo Execution.**
+*Walkthrough completed by Antigravity AI.*
