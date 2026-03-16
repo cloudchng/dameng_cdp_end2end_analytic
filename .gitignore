@@ -1,0 +1,19 @@
+# Local Git configuration
+docs/git_multi_push_guide.md
+docs/medium_article_draft.md
+
+# IDE settings
+.vscode/
+
+# Project internal tracking
+task_history.md
+Project_Status.md
+
+# Python temporary files
+__pycache__/
+*.py[cod]
+*$py.class
+models/*.pkl
+
+# DS_Store (macOS)
+.DS_Store
