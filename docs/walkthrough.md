@@ -38,4 +38,3 @@ This document summarizes the end-to-end implementation of the Fraud Detection pi
 *   [x] **NiFi Flow Logic**: Verified the three-pipeline approach in documentation for foolproof execution.
 *   [x] **Simulation**: Python script confirmed for compatibility with the final database schema.
 
-*Walkthrough completed by Antigravity AI.*

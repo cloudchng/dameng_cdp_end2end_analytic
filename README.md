@@ -7,8 +7,8 @@ It demonstrates a real-time banking ecosystem where synthetic transactions are g
 ## 📂 Project Structure
 
 - **[`docs/`](docs/)**: Enterprise-grade documentation.
-    - **[`setup_and_configuration_guide.md`](docs/setup_and_configuration_guide.md)**: Technical installation and configuration steps.
-    - **[`demo_walkthrough_guide.md`](docs/demo_walkthrough_guide.md)**: Scripted "point-and-click" walkthrough for the final presentation.
+    - **[`demo_walkthrough_guide.md`](docs/demo_walkthrough_guide.md)**: A dual-purpose guide for both live presenters and self-guided exploration.
+    - **[`setup_and_configuration_guide.md`](docs/setup_and_configuration_guide.md)**: Comprehensive technical installation and configuration steps.
 - **[`scripts/`](scripts/)**: Python automation and ML code.
     - `dameng_transaction_generator.py`: Core transaction simulator.
     - `bank_customer_generator.py`, `bank_account_generator.py`, `bank_merchant_generator.py`: KYC and ecosystem data generators.
